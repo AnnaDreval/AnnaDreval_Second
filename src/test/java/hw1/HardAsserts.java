@@ -34,6 +34,8 @@ public class HardAsserts {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
+       //через лист сначала размр проверить
+        //цикл на 4 эл-та foreach ... .contains(elem.getText())
         WebElement homeTitle = driver.findElement(By.cssSelector("[href = 'index.html']"));
         assertEquals(homeTitle.getText(), "HOME");
 
@@ -69,7 +71,7 @@ public class HardAsserts {
         //9 Assert a text of the main header
         WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
         assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-
+//into private peremennie
         WebElement jdiTitle = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
         assertEquals(jdiTitle.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD" +
                 " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
@@ -93,8 +95,9 @@ public class HardAsserts {
         assertEquals(jdiGit.getText(), "JDI GITHUB");
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
+
         assertEquals(jdiGit.isEnabled(), true);
-        //WebElement jdiLink = driver.findElement(By.linkText("https://github.com/epam/JDI"));
+        //String jdiLink = driver.findElement(By.linkText("https://github.com/epam/JDI"))//.getAttribute("href");
         //assertEquals(jdiLink.isDisplayed(), true);
 
         //15 Assert that there is Left Section
