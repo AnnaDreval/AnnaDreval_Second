@@ -6,15 +6,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
+import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class HardAsserts {
+
+    private String mainHeader = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD" +
+            " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
+            " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE" +
+            " VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
+
     @Test
     public void firstTest() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
         //1 Open test site by URL
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.navigate().to("https://epam.github.io/JDI/");
 
         //2 Assert Browser title
@@ -34,49 +46,33 @@ public class HardAsserts {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
-       //через лист сначала размр проверить
-        //цикл на 4 эл-та foreach ... .contains(elem.getText())
-        WebElement homeTitle = driver.findElement(By.cssSelector("[href = 'index.html']"));
-        assertEquals(homeTitle.getText(), "HOME");
-
-        WebElement contactForm = driver.findElement(By.cssSelector("[href = 'contacts.html']"));
-        assertEquals(contactForm.getText(), "CONTACT FORM");
-
-        WebElement service = driver.findElement(By.cssSelector("[class = 'dropdown-toggle']"));
-        assertEquals(service.getText(), "SERVICE");
-
-        WebElement metCol = driver.findElement(By.cssSelector("[href= 'metals-colors.html']"));
-        assertEquals(metCol.getText(), "METALS & COLORS");
+        List<WebElement> items = driver.findElements(By.cssSelector("ul.uui-navigation.nav  > li > a"));
+        assertEquals(items.size(), 4);
+        assertEquals(items.get(0).getText(), "HOME");
+        assertEquals(items.get(1).getText(), "CONTACT FORM");
+        assertEquals(items.get(2).getText(), "SERVICE");
+        assertEquals(items.get(3).getText(), "METALS & COLORS");
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
-        WebElement practiceImage = driver.findElement(By.cssSelector("[class = 'icons-benefit icon-practise']"));
-        assertEquals(practiceImage.isDisplayed(), true);
-
-        WebElement customeImage = driver.findElement(By.cssSelector("[class = 'icons-benefit icon-custom']"));
-        assertEquals(customeImage.isDisplayed(), true);
-
-        WebElement multiImage = driver.findElement(By.cssSelector("[class = 'icons-benefit icon-multi']"));
-        assertEquals(multiImage.isDisplayed(), true);
-
-        WebElement baseImage = driver.findElement(By.cssSelector("[class = 'icons-benefit icon-base']"));
-        assertEquals(baseImage.isDisplayed(), true);
+        List<WebElement> images = driver.findElements(By.cssSelector("div.benefit-icon > span"));
+        for (WebElement elem : images) {
+            assertTrue(elem.isDisplayed());
+        }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        WebElement practiceTxt = driver.findElement(By.cssSelector("[class = 'benefit-txt']"));
-        assertEquals(practiceTxt.getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
-//        WebElement customeTxt = driver.findElement(By.cssSelector("[class = 'benefit-txt']"));
-//        assertEquals(customeTxt.getText(), "To be flexible and\n" +
-//                "customizable");
+        List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
+        assertEquals(texts.get(1).getText(), "To be flexible and\n" + "customizable");
+        assertEquals(texts.get(2).getText(), "To be multiplatform");
+        assertEquals(texts.get(3).getText(), "Already have good base\n" + "(about 20 internal and\n"
+                + "some external projects),\n" + "wish to get more…");
+
 
         //9 Assert a text of the main header
         WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
         assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-//into private peremennie
         WebElement jdiTitle = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
-        assertEquals(jdiTitle.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD" +
-                " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
-                " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE" +
-                " VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        assertEquals(jdiTitle.getText(), mainHeader);
 
         //10 Assert that there is the iframe in the center of page
         WebElement iFrame = driver.findElement(By.id("iframe"));
@@ -95,10 +91,8 @@ public class HardAsserts {
         assertEquals(jdiGit.getText(), "JDI GITHUB");
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-
-        assertEquals(jdiGit.isEnabled(), true);
-        //String jdiLink = driver.findElement(By.linkText("https://github.com/epam/JDI"))//.getAttribute("href");
-        //assertEquals(jdiLink.isDisplayed(), true);
+        String jdiLink = driver.findElement(By.cssSelector("[href = 'https://github.com/epam/JDI']")).getAttribute("href");
+        assertEquals(jdiLink, "https://github.com/epam/JDI");
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector("[class = 'mCustomScrollBox mCS-light mCSB_vertical mCSB_inside']"));
