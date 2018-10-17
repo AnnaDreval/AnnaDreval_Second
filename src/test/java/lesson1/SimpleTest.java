@@ -8,10 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
-
 import static java.lang.System.setProperty;
 import static org.testng.Assert.*;
 
