@@ -19,7 +19,7 @@ public class SoftAsserts {
             " VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
 
     @Test
-    public void firstTest() {
+    public void indexPageContentTest() {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         SoftAssert softAssert = new SoftAssert();
@@ -55,12 +55,14 @@ public class SoftAsserts {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> images = driver.findElements(By.cssSelector("div.benefit-icon > span"));
+        softAssert.assertEquals(images.size(), 4);
         for (WebElement elem : images) {
             softAssert.assertTrue(elem.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
+        softAssert.assertEquals(texts.size(), 4);
         softAssert.assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n"
                 + "EPAM project");
         softAssert.assertEquals(texts.get(1).getText(), "To be flexible and\n" + "customizable");
@@ -77,12 +79,12 @@ public class SoftAsserts {
 
         //10 Assert that there is the iframe in the center of page
         WebElement iFrame = driver.findElement(By.id("iframe"));
-        softAssert.assertEquals(iFrame.isDisplayed(), true);
+        softAssert.assertTrue(iFrame.isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
         WebElement logo = driver.findElement(By.id("epam_logo"));
-        softAssert.assertEquals(logo.isDisplayed(), true);
+        softAssert.assertTrue(logo.isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();
@@ -97,11 +99,11 @@ public class SoftAsserts {
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector("[class = 'mCustomScrollBox mCS-light mCSB_vertical mCSB_inside']"));
-        softAssert.assertEquals(leftSection.isDisplayed(), true);
+        softAssert.assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
         WebElement footer = driver.findElement(By.cssSelector("[class = 'footer-content overflow']"));
-        softAssert.assertEquals(footer.isDisplayed(), true);
+        softAssert.assertTrue(footer.isDisplayed());
 
         softAssert.assertAll();
 
