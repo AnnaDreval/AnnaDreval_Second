@@ -5,11 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.System.setProperty;
 import static org.testng.Assert.*;
@@ -30,6 +27,7 @@ public class IndexPage {
 
         //3 Asserting 4 texts below 4 pictures
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(texts.size(), 4);
         assertEquals(texts.get(num).getText(), text);
 
         //4 Close

@@ -12,15 +12,15 @@ import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ForthClass {
+public class TwoRegressionOneSmoke {
 
     private String mainHeader = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD" +
             " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
             " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE" +
             " VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
 
-    @Test(groups = {"Regression", "Smoke"})
-    public void firstTest() {
+    @Test(groups = "Smoke")
+    public void indexPageContentTest1() {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
@@ -55,12 +55,14 @@ public class ForthClass {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> images = driver.findElements(By.cssSelector("div.benefit-icon > span"));
+        assertEquals(images.size(), 4);
         for (WebElement elem : images) {
             assertTrue(elem.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(texts.size(), 4);
         assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
         assertEquals(texts.get(1).getText(), "To be flexible and\n" + "customizable");
         assertEquals(texts.get(2).getText(), "To be multiplatform");
@@ -76,12 +78,12 @@ public class ForthClass {
 
         //10 Assert that there is the iframe in the center of page
         WebElement iFrame = driver.findElement(By.id("iframe"));
-        assertEquals(iFrame.isDisplayed(), true);
+        assertTrue(iFrame.isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
         WebElement logo = driver.findElement(By.id("epam_logo"));
-        assertEquals(logo.isDisplayed(), true);
+        assertTrue(logo.isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();
@@ -96,18 +98,19 @@ public class ForthClass {
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector("[class = 'mCustomScrollBox mCS-light mCSB_vertical mCSB_inside']"));
-        assertEquals(leftSection.isDisplayed(), true);
+        assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
         WebElement footer = driver.findElement(By.cssSelector("[class = 'footer-content overflow']"));
-        assertEquals(footer.isDisplayed(), true);
+        assertTrue(footer.isDisplayed());
 
         //17 Close Browser
         driver.close();
+
     }
 
-    @Test(groups = {"Regression", "Smoke"})
-    public void secondTest() {
+    @Test(groups = "Regression")
+    public void indexPageContentTest2() {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
@@ -142,12 +145,14 @@ public class ForthClass {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> images = driver.findElements(By.cssSelector("div.benefit-icon > span"));
+        assertEquals(images.size(), 4);
         for (WebElement elem : images) {
             assertTrue(elem.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(texts.size(), 4);
         assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
         assertEquals(texts.get(1).getText(), "To be flexible and\n" + "customizable");
         assertEquals(texts.get(2).getText(), "To be multiplatform");
@@ -163,12 +168,12 @@ public class ForthClass {
 
         //10 Assert that there is the iframe in the center of page
         WebElement iFrame = driver.findElement(By.id("iframe"));
-        assertEquals(iFrame.isDisplayed(), true);
+        assertTrue(iFrame.isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
         WebElement logo = driver.findElement(By.id("epam_logo"));
-        assertEquals(logo.isDisplayed(), true);
+        assertTrue(logo.isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();
@@ -183,18 +188,19 @@ public class ForthClass {
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector("[class = 'mCustomScrollBox mCS-light mCSB_vertical mCSB_inside']"));
-        assertEquals(leftSection.isDisplayed(), true);
+        assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
         WebElement footer = driver.findElement(By.cssSelector("[class = 'footer-content overflow']"));
-        assertEquals(footer.isDisplayed(), true);
+        assertTrue(footer.isDisplayed());
 
         //17 Close Browser
         driver.close();
+
     }
 
-    @Test(groups = {"Regression", "Smoke"})
-    public void thirdTest() {
+    @Test(groups = "Regression")
+    public void indexPageContentTest3() {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
@@ -229,12 +235,14 @@ public class ForthClass {
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> images = driver.findElements(By.cssSelector("div.benefit-icon > span"));
+        assertEquals(images.size(), 4);
         for (WebElement elem : images) {
             assertTrue(elem.isDisplayed());
         }
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(texts.size(), 4);
         assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
         assertEquals(texts.get(1).getText(), "To be flexible and\n" + "customizable");
         assertEquals(texts.get(2).getText(), "To be multiplatform");
@@ -250,12 +258,12 @@ public class ForthClass {
 
         //10 Assert that there is the iframe in the center of page
         WebElement iFrame = driver.findElement(By.id("iframe"));
-        assertEquals(iFrame.isDisplayed(), true);
+        assertTrue(iFrame.isDisplayed());
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
         WebElement logo = driver.findElement(By.id("epam_logo"));
-        assertEquals(logo.isDisplayed(), true);
+        assertTrue(logo.isDisplayed());
 
         //12 Switch to original window back
         driver.switchTo().defaultContent();
@@ -270,11 +278,11 @@ public class ForthClass {
 
         //15 Assert that there is Left Section
         WebElement leftSection = driver.findElement(By.cssSelector("[class = 'mCustomScrollBox mCS-light mCSB_vertical mCSB_inside']"));
-        assertEquals(leftSection.isDisplayed(), true);
+        assertTrue(leftSection.isDisplayed());
 
         //16 Assert that there is Footer
         WebElement footer = driver.findElement(By.cssSelector("[class = 'footer-content overflow']"));
-        assertEquals(footer.isDisplayed(), true);
+        assertTrue(footer.isDisplayed());
 
         //17 Close Browser
         driver.close();
