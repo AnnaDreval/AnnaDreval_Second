@@ -17,7 +17,7 @@ public class SmokeTests {
             " TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION" +
             " ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE" +
             " VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
-//(invocationCount = 3, threadPoolSize = 3)
+
 
     @Test(groups = "Smoke")
     public void indexPageContentTest1() {
