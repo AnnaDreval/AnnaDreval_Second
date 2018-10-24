@@ -1,5 +1,6 @@
 package base;
 
+import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -13,6 +14,7 @@ public class TestBase {
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
+      // Configuration.browser = "chrome";
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         time = currentTimeMillis();
     }
