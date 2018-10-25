@@ -9,6 +9,5 @@ public class SelenideTestBase {
     public void beforeSuite() {
         Configuration.browser = "chrome";
 
-        //Configuration.pageLoadStrategy("normal");
     }
 }

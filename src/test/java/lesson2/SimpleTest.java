@@ -17,7 +17,7 @@ import static org.testng.Assert.assertEquals;
 
 public class SimpleTest extends TestBase {
 
-    private  WebDriver driver;
+    private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
@@ -59,7 +59,7 @@ public class SimpleTest extends TestBase {
 
         //Action LogOut
         element = driver.findElement(By.cssSelector(".login [type = 'submit']"));
-        Actions action  = new Actions(driver);
+        Actions action = new Actions(driver);
         action.moveToElement(element).click();
 
     }

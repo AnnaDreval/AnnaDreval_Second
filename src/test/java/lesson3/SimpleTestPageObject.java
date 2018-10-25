@@ -14,13 +14,12 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageObjects.HomePage;
 
-import java.awt.print.PageFormat;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
 public class SimpleTestPageObject extends TestBase {
-    private  WebDriver driver;
+    private WebDriver driver;
     private HomePage homePage;
 
     @BeforeClass
@@ -65,7 +64,7 @@ public class SimpleTestPageObject extends TestBase {
 
         //Action LogOut
         element = driver.findElement(By.cssSelector(".login [type = 'submit']"));
-        Actions action  = new Actions(driver);
+        Actions action = new Actions(driver);
         action.moveToElement(element).click();
 
     }

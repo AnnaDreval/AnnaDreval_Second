@@ -1,16 +1,12 @@
 package lesson4;
 
 import base.SelenideTestBase;
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.lang.System.setProperty;
@@ -24,7 +20,7 @@ public class SimpleTestSelenide extends SelenideTestBase {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
         //2 Navigate
-         open("https://epam.github.io/JDI/index.html");
+        open("https://epam.github.io/JDI/index.html");
 
         //3 Assert Title
         assertEquals(getWebDriver().getTitle(), "Home Page");
@@ -36,7 +32,7 @@ public class SimpleTestSelenide extends SelenideTestBase {
         $(".login [type = 'submit']").click();
 
         //Collection
-     //   $$(By.xpath(""));
+        //   $$(By.xpath(""));
 
         //5 Check main title
         SelenideElement mainTitle = $("h3.main-title");
@@ -44,9 +40,8 @@ public class SimpleTestSelenide extends SelenideTestBase {
         mainTitle.shouldHave(text("EPAM FRAMEWORK WISHES…"));
 
         //6 Check images
-      //  $$(By.xpath("")).shouldHaveSize(4);
-    //    $$(By.xpath("")).shouldBe(CollectionCondition.sizeLessThan(5));
-
+        //  $$(By.xpath("")).shouldHaveSize(4);
+        //    $$(By.xpath("")).shouldBe(CollectionCondition.sizeLessThan(5));
 
 
     }

@@ -1,27 +1,27 @@
 package lesson4;
 
 import base.SelenideTestBase;
-import io.qameta.allure.*;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
-import static java.lang.System.setProperty;
+import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHAILOVSKII;
+import static java.lang.System.setProperty;
 
 @Feature("Smoke Tests")
 @Story("Home Page Testing")
 
 public class SimpleTestSelenidePageObject extends SelenideTestBase {
     HomePageSelenide homePageSelenide;
+
     @BeforeClass
     public void beforeClass() {
-         homePageSelenide = page(HomePageSelenide.class);
+        homePageSelenide = page(HomePageSelenide.class);
     }
-
 
     @Flaky
     @Test

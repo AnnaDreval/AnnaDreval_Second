@@ -5,13 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import javax.swing.*;
+
 import java.util.concurrent.TimeUnit;
-import static java.lang.System.setProperty;
-import static org.testng.Assert.*;
+
+import static org.testng.Assert.assertEquals;
 
 public class SimpleTest {
 
@@ -48,7 +47,7 @@ public class SimpleTest {
 
         //Action LogOut
         element = driver.findElement(By.cssSelector(".login [type = 'submit']"));
-        Actions action  = new Actions(driver);
+        Actions action = new Actions(driver);
         action.moveToElement(element).click();
 
         driver.close();

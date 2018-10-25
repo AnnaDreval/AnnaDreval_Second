@@ -48,14 +48,11 @@ public class HomePageSelenide_HW3 {
     @FindBy(css = "[name = 'jdi-text']")
     private SelenideElement jdiTitle;
 
-    @FindBy(id = "iframe")
+    @FindBy(css = "[id = 'iframe']")
     private SelenideElement iFrame;
 
-    @FindBy(id = "epam_logo")
+    @FindBy(css = "[id = 'epam_logo']")
     private SelenideElement logo;
-
-    @FindBy(css = "[href = 'https://github.com/epam/JDI']")
-    private SelenideElement jdiGit;
 
     @FindBy(css = "[href = 'https://github.com/epam/JDI']")
     private SelenideElement jdiLink;
@@ -112,7 +109,7 @@ public class HomePageSelenide_HW3 {
     public void checkFourImages() {
         assertEquals(images.size(), 4);
         for (SelenideElement elem : images) {
-            elem.shouldBe().isDisplayed();
+            elem.shouldBe(visible);
         }
     }
 
@@ -127,15 +124,15 @@ public class HomePageSelenide_HW3 {
     }
 
     public void checkIFrame() {
-        iFrame.shouldBe().isDisplayed();
+        iFrame.shouldBe(visible);
     }
 
     public void checkLogo() {
-        logo.shouldBe().isDisplayed();
+        logo.shouldBe(visible);
     }
 
     public void checkJdiGit() {
-        jdiGit.shouldHave(text("JDI GITHUB"));
+        jdiLink.shouldHave(text("JDI GITHUB"));
     }
 
     public void checkJdiLink() {
@@ -144,10 +141,10 @@ public class HomePageSelenide_HW3 {
     }
 
     public void checkLeftSection() {
-        leftSection.shouldBe().isDisplayed();
+        leftSection.shouldBe(visible);
     }
 
     public void checkFooter() {
-        footer.shouldBe().isDisplayed();
+        footer.shouldBe(visible);
     }
 }

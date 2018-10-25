@@ -1,24 +1,17 @@
 package hw3;
 
 import base.SelenideTestBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.annotations.*;
-import pageObjects.HomePageSelenide;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide_HW3;
 
-import java.util.List;
-
-import static enums.Users.PITER_CHAILOVSKII;
-
 import static com.codeborne.selenide.Selenide.page;
+import static enums.Users.PITER_CHAILOVSKII;
 import static java.lang.System.setProperty;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class PageObjectTestSelenide extends SelenideTestBase {
 
-    HomePageSelenide_HW3 homePage;
+    private HomePageSelenide_HW3 homePage;
 
     @BeforeClass
     public void beforeClass() {
