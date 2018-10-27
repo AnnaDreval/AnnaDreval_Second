@@ -4,7 +4,7 @@ import org.testng.annotations.DataProvider;
 
 public class DataProviders {
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] simpleDataProvider() {
         return new Object[][] {
                 {"String1", 1},
@@ -13,7 +13,7 @@ public class DataProviders {
         };
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] indexPageDataProvider() {
         return new Object[][] {
                 {0, "To include good practices\n" + "and ideas from successful\n" + "EPAM project"},

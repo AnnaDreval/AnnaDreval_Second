@@ -64,6 +64,7 @@ public class HomePageSelenide_HW3 {
     private SelenideElement footer;
 
 
+
     //================================methods===================================
 
     public void openPage() {

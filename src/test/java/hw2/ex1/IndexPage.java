@@ -15,7 +15,6 @@ import static org.testng.Assert.assertEquals;
 
 public class IndexPage {
 
-    @DataProvider(parallel = true)
     @Test(dataProvider = "indexPageDataProvider", dataProviderClass = DataProviders.class)
     public void textsAssertingTest(int num, String text) {
 
