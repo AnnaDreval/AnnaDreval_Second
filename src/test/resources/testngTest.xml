@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite007" verbose="1" >
+    <test name="Homework4 Test"   >
+
+
+        <classes>
+            <class name="hw4.InterfaceCheckTest" />
+        </classes>
+
+
+    </test>
+</suite>
