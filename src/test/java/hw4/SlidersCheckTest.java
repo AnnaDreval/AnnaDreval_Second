@@ -34,10 +34,33 @@ public class SlidersCheckTest extends SelenideTestBase {
 
         //5 Open Service -> Dates Page
         datesPage.datesPage();
-        datesPage.openPage();
-        //6
-        datesPage.setRange2();
+
+       //6 Setting Range sliders [0, 100]
+        datesPage.setSliders(0, 100);
+
+        //7 Assert sliders
+        datesPage.checkSliders();
+
+        //8 Setting Range sliders [0, 0]
+        datesPage.setSliders(0, 0);
+
+        //9 Assert sliders
+        datesPage.checkSliders();
+
+        //10 Setting Range sliders [100, 100]
+        datesPage.setSliders(100, 100);
+
+        //11 Assert sliders
+        datesPage.checkSliders();
+
+        //12 Setting Range sliders [30, 70]
+        datesPage.setSliders(30, 70);
+
+        //13 Assert sliders
+        datesPage.checkSliders();
 
 
+
+        datesPage.checkSliders();
     }
 }

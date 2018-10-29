@@ -6,11 +6,18 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
 public class DatesPage_HW4 {
+
+    private int sliderLeft;
+    private int sliderRight;
+    private String fromSlider = "Range 2(From):";
+    private String toSlider = "Range 2(To):";
+    private String end = " link clicked";
 
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
@@ -39,11 +46,12 @@ public class DatesPage_HW4 {
     @FindBy(css = ".col-sm-5 > [style = 'left: 100%;']")
     private SelenideElement range2_Rigth;
 
-    @FindBy(css = ".ui-slider-range ui-widget-header ui-corner-all > style")
-    private List<SelenideElement> range2;
+    @FindBy(css = "a.ui-slider-handle.ui-state-default.ui-corner-all")
+    private List<SelenideElement> sliders;
 
-    //ui-slider-range ui-widget-header ui-corner-all
-    //ui-slider-range ui-widget-header ui-corner-all
+    @FindBy(css = ".panel-body-list > li")
+    private List<SelenideElement> logs;
+
 
     //===========================methods================================
 
@@ -63,10 +71,20 @@ public class DatesPage_HW4 {
         datesPage.click();
     }
 
-    public void setRange2() {
-        assertEquals(range2.size(), 2);
-//        range2.get(0).dragAndDropTo("0");
-//        range2.get(1).dragAndDropTo("100");
+    public void setSliders(int left, int right) {
+
+        actions().dragAndDropBy(sliders.get(0), -1000, 0).build().perform();
+        actions().dragAndDropBy(sliders.get(1), 1000, 0).build().perform();
+
+        double panelStep = (double) (sliders.get(1).getLocation().getX() - sliders.get(0).getLocation().getX()) / 100;
+
+        actions().dragAndDropBy(sliders.get(0), (int) (left * panelStep - ((left > 0) ? 0.5 * panelStep : panelStep)), 0).build()
+                .perform();
+        actions().dragAndDropBy(sliders.get(1), (int) (-((100 - right) * panelStep + panelStep)), 0).build().perform();
+
+        sliderLeft = Integer.parseInt(sliders.get(0).getText());
+        sliderRight = Integer.parseInt(sliders.get(1).getText());
+
     }
 
     //================================checks===================================
@@ -78,4 +96,18 @@ public class DatesPage_HW4 {
     public void checkUserName() {
         userName.shouldHave(text("PITER CHAILOVSKII"));
     }
+
+    public void checkSliders() {
+
+        assertEquals(Integer.parseInt(sliders.get(0).getText()), sliderLeft);
+        assertEquals(Integer.parseInt(sliders.get(1).getText()), sliderRight);
+
+        String from = logs.get(1).getText();
+        String to = logs.get(0).getText();
+
+        assertEquals(from.substring(9), fromSlider + sliderLeft + end);
+        assertEquals(to.substring(9), toSlider + sliderRight + end);
+
+    }
+
 }

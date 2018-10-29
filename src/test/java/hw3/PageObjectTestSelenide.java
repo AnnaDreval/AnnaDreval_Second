@@ -7,6 +7,7 @@ import pageObjects.HomePageSelenide_HW3;
 
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHAILOVSKII;
+import static java.lang.System.setProperty;
 
 public class PageObjectTestSelenide extends SelenideTestBase {
 
@@ -20,6 +21,7 @@ public class PageObjectTestSelenide extends SelenideTestBase {
     @Test
     public void indexPageContentTest() {
 
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         //1 Navigate
         homePage.openPage();
 
