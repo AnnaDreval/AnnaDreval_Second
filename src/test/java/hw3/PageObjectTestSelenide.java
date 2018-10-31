@@ -53,7 +53,7 @@ public class PageObjectTestSelenide extends SelenideTestBase {
         //11 Assert Epam logo in the left top conner of iframe
         homePage.checkLogo();
 
-        //13 Assert a text of the sub header
+        //13 Assert a title of the sub header
         homePage.checkJdiGit();
 
         //14 Assert that JDI GITHUB is a link and has a proper URL

@@ -88,7 +88,7 @@ public class AllAnnotationsTest {
             assertTrue(elem.isDisplayed());
         }
 
-        //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
+        //8 Assert that there are 4 texts on the Index Page under icons and they have proper title
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
         assertEquals(texts.size(), 4);
         assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
@@ -97,10 +97,10 @@ public class AllAnnotationsTest {
         assertEquals(texts.get(3).getText(), "Already have good base\n" + "(about 20 internal and\n"
                 + "some external projects),\n" + "wish to get more…");
 
-        //9 Assert a text of the main header
+        //9 Assert a title of the main header
         WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
         assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-        WebElement jdiTitle = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
+        WebElement jdiTitle = driver.findElement(By.cssSelector("[name = 'jdi-title']"));
         assertEquals(jdiTitle.getText(), mainHeader);
 
         //10 Assert that there is the iframe in the center of page
@@ -115,7 +115,7 @@ public class AllAnnotationsTest {
         //12 Switch to original window back
         driver.switchTo().defaultContent();
 
-        //13 Assert a text of the sub header
+        //13 Assert a title of the sub header
         WebElement jdiGit = driver.findElement(By.cssSelector("[href = 'https://github.com/epam/JDI']"));
         assertEquals(jdiGit.getText(), "JDI GITHUB");
 

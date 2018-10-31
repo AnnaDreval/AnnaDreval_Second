@@ -45,7 +45,7 @@ public class HomePageSelenide_HW3 {
     @FindBy(css = "div.benefit > span")
     private List<SelenideElement> texts;
 
-    @FindBy(css = "[name = 'jdi-text']")
+    @FindBy(css = "[name = 'jdi-title']")
     private SelenideElement jdiTitle;
 
     @FindBy(css = "[id = 'iframe']")

@@ -6,6 +6,11 @@ import org.testng.annotations.Test;
 import pageObjects.ServicePage_HW4;
 
 import static com.codeborne.selenide.Selenide.page;
+import static enums.CheckBoxes.WATER;
+import static enums.CheckBoxes.WIND;
+import static enums.DropDown.YELLOW;
+import static enums.Logs.*;
+import static enums.RadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
 public class InterfaceCheckTest extends SelenideTestBase {
@@ -27,7 +32,7 @@ public class InterfaceCheckTest extends SelenideTestBase {
         servicepage.checkTitle();
 
         //3 Perform login
-        servicepage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
+        servicepage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
         servicepage.checkUserName();
@@ -51,28 +56,28 @@ public class InterfaceCheckTest extends SelenideTestBase {
         servicepage.checkLeftSection();
 
         //11 Select checkboxes
-        servicepage.selectCheckbox();
+        servicepage.selectCheckbox(WATER, WIND);
 
         //12 Assert info-panel section
-        servicepage.checkCheckboxInfo();
+        servicepage.checkCheckboxInfo(WATER_TRUE, WIND_TRUE);
 
         //13 Select radio
-        servicepage.selectRadio();
+        servicepage.selectRadio(SELEN);
 
         //14 Assert info-panel section
-        servicepage.checkRadioInfo();
+        servicepage.checkRadioInfo(SELEN_TRUE);
 
         //15  Select in dropdown
-        servicepage.selectDropDown();
+        servicepage.selectDropDown(YELLOW);
 
         //16 Assert info-panel section
-        servicepage.checkDropDown();
+        servicepage.checkDropDown(YELLOW_TRUE);
 
         //17 Unselect checkboxes
-        servicepage.selectCheckbox();
+        servicepage.selectCheckbox(WATER, WIND);
 
         //18 Assert info-panel section
-        servicepage.checkUnselect();
+        servicepage.checkUnselect(WATER_FALSE, WIND_FALSE);
 
     }
 }

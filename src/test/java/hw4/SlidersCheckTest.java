@@ -27,7 +27,7 @@ public class SlidersCheckTest extends SelenideTestBase {
         datesPage.checkTitle();
 
         //3 Perform login
-        datesPage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
+        datesPage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
         datesPage.checkUserName();
@@ -35,32 +35,29 @@ public class SlidersCheckTest extends SelenideTestBase {
         //5 Open Service -> Dates Page
         datesPage.datesPage();
 
-       //6 Setting Range sliders [0, 100]
+       //6 Setting Range sliders
         datesPage.setSliders(0, 100);
 
         //7 Assert sliders
         datesPage.checkSliders();
 
-        //8 Setting Range sliders [0, 0]
+        //8 Setting Range sliders
         datesPage.setSliders(0, 0);
 
         //9 Assert sliders
         datesPage.checkSliders();
 
-        //10 Setting Range sliders [100, 100]
+        //10 Setting Range sliders
         datesPage.setSliders(100, 100);
 
         //11 Assert sliders
         datesPage.checkSliders();
 
-        //12 Setting Range sliders [30, 70]
+        //12 Setting Range sliders
         datesPage.setSliders(30, 70);
 
         //13 Assert sliders
         datesPage.checkSliders();
 
-
-
-        datesPage.checkSliders();
     }
 }

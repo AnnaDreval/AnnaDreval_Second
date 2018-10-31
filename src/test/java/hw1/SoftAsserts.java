@@ -60,7 +60,7 @@ public class SoftAsserts {
             softAssert.assertTrue(elem.isDisplayed());
         }
 
-        //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
+        //8 Assert that there are 4 texts on the Index Page under icons and they have proper title
         List<WebElement> texts = driver.findElements(By.cssSelector("div.benefit > span"));
         softAssert.assertEquals(texts.size(), 4);
         softAssert.assertEquals(texts.get(0).getText(), "To include good practices\n" + "and ideas from successful\n"
@@ -71,10 +71,10 @@ public class SoftAsserts {
                 + "some external projects),\n" + "wish to get more…");
 
 
-        //9 Assert a text of the main header
+        //9 Assert a title of the main header
         WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
         softAssert.assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
-        WebElement jdiTitle = driver.findElement(By.cssSelector("[name = 'jdi-text']"));
+        WebElement jdiTitle = driver.findElement(By.cssSelector("[name = 'jdi-title']"));
         softAssert.assertEquals(jdiTitle.getText(), mainHeader);
 
         //10 Assert that there is the iframe in the center of page
@@ -89,7 +89,7 @@ public class SoftAsserts {
         //12 Switch to original window back
         driver.switchTo().defaultContent();
 
-        //13 Assert a text of the sub header
+        //13 Assert a title of the sub header
         WebElement jdiGit = driver.findElement(By.cssSelector("[href = 'https://github.com/epam/JDI']"));
         softAssert.assertEquals(jdiGit.getText(), "JDI GITHUB");
 

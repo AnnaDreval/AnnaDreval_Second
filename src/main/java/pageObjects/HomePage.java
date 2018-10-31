@@ -27,7 +27,7 @@ public class HomePage {
     @FindBy(css = "h3.main-title")
     private WebElement mainTitle;
 
-    @FindBy(css = "[name = 'jdi-text']")
+    @FindBy(css = "[name = 'jdi-title']")
     private WebElement jdiTitle;
 
     @FindBy(id = "iframe")

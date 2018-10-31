@@ -1,6 +1,7 @@
 package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
+import enums.Users;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -9,15 +10,13 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.SlidersLog.*;
 import static org.testng.Assert.assertEquals;
 
 public class DatesPage_HW4 {
 
     private int sliderLeft;
     private int sliderRight;
-    private String fromSlider = "Range 2(From):";
-    private String toSlider = "Range 2(To):";
-    private String end = " link clicked";
 
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
@@ -59,10 +58,10 @@ public class DatesPage_HW4 {
         open("https://epam.github.io/JDI/index.html");
     }
 
-    public void login(String name, String passwd) {
+    public void login(Users user) {
         profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(passwd);
+        login.sendKeys(user.login);
+        password.sendKeys(user.password);
         submit.click();
     }
 
@@ -84,7 +83,6 @@ public class DatesPage_HW4 {
 
         sliderLeft = Integer.parseInt(sliders.get(0).getText());
         sliderRight = Integer.parseInt(sliders.get(1).getText());
-
     }
 
     //================================checks===================================
@@ -102,12 +100,11 @@ public class DatesPage_HW4 {
         assertEquals(Integer.parseInt(sliders.get(0).getText()), sliderLeft);
         assertEquals(Integer.parseInt(sliders.get(1).getText()), sliderRight);
 
-        String from = logs.get(1).getText();
-        String to = logs.get(0).getText();
+        String from = logs.get(1).getText().substring(9);
+        String to = logs.get(0).getText().substring(9);
 
-        assertEquals(from.substring(9), fromSlider + sliderLeft + end);
-        assertEquals(to.substring(9), toSlider + sliderRight + end);
+        assertEquals(from, FROM_SLIDER.status + sliderLeft + END.status);
+        assertEquals(to, TO_SLIDER.status + sliderRight + END.status);
 
     }
-
 }
