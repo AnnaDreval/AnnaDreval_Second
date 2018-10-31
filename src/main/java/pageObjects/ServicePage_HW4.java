@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.*;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -79,10 +80,12 @@ public class ServicePage_HW4 {
 
     //===========================methods================================
 
+    @Step
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
 
+    @Step
     public void login(Users user) {
         profileButton.click();
         login.sendKeys(user.login);
@@ -90,11 +93,13 @@ public class ServicePage_HW4 {
         submit.click();
     }
 
+    @Step
     public void openDiffElem() {
         serviceHeader.click();
         diffElements.click();
     }
 
+    @Step
     public void selectCheckbox(CheckBoxes... checkBoxes) {
         for (CheckBoxes c : checkBoxes) {
             if (c == CheckBoxes.WATER) checkboxes.get(0).click();
@@ -104,6 +109,7 @@ public class ServicePage_HW4 {
         }
     }
 
+    @Step
     public void selectRadio(RadioButtons... radioButtons) {
         for (RadioButtons rb : radioButtons) {
             if (rb == RadioButtons.GOLD) radiobuttons.get(0).click();
@@ -113,6 +119,7 @@ public class ServicePage_HW4 {
         }
     }
 
+    @Step
     public void selectDropDown(DropDown... dropDowns) {
         dropdownform.click();
         for (DropDown dd : dropDowns) {
@@ -125,14 +132,17 @@ public class ServicePage_HW4 {
 
     //================================checks===================================
 
+    @Step
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
+    @Step
     public void checkUserName() {
         userName.shouldHave(text("PITER CHAILOVSKII"));
     }
 
+    @Step
     public void checkServiceSubcategory() {
         serviceHeader.click();
         for (int i = 0; i < serviceOptions.size(); i++) {
@@ -140,6 +150,7 @@ public class ServicePage_HW4 {
         }
     }
 
+    @Step
     public void checkServiceLeftSection() {
         serviceLeftSection.click();
         for (int i = 0; i < 8; i++) {
@@ -147,6 +158,7 @@ public class ServicePage_HW4 {
         }
     }
 
+    @Step
     public void checkDiffElemInterface() {
         assertEquals(checkboxes.size(), 4);
         assertEquals(radiobuttons.size(), 4);
@@ -155,47 +167,53 @@ public class ServicePage_HW4 {
         defaultButton.shouldBe(visible);
     }
 
+    @Step
     public void checkRightSection() {
         rigthSection.shouldBe(visible);
     }
 
+    @Step
     public void checkLeftSection() {
         leftSection.shouldBe(visible);
     }
 
+    @Step
     public void checkCheckboxInfo(Logs... logsForCheck) {
         String wind = logs.get(0).getText();
         String water = logs.get(1).getText();
 
         for (Logs l : logsForCheck) {
-            if (l.equals(WATER_TRUE)) assertEquals(water.substring(9), Logs.WATER_TRUE.status);
-            else if (l.equals(WIND_TRUE)) assertEquals(wind.substring(9), Logs.WIND_TRUE.status);
+            if (l.equals(WATER_TRUE)) assertEquals(water.substring(9), WATER_TRUE.status);
+            else if (l.equals(WIND_TRUE)) assertEquals(wind.substring(9), WIND_TRUE.status);
         }
     }
 
+    @Step
     public void checkRadioInfo(Logs... logsForCheck) {
         String selen = logs.get(0).getText();
 
         for (Logs l : logsForCheck) {
-            if (l.equals(SELEN_TRUE)) assertEquals(selen.substring(9), Logs.SELEN_TRUE.status);
+            if (l.equals(SELEN_TRUE)) assertEquals(selen.substring(9), SELEN_TRUE.status);
         }
     }
 
+    @Step
     public void checkDropDown(Logs... logsForCheck) {
         String yellow = logs.get(0).getText();
 
         for (Logs l : logsForCheck) {
-            if (l.equals(YELLOW_TRUE)) assertEquals(yellow.substring(9), Logs.YELLOW_TRUE.status);
+            if (l.equals(YELLOW_TRUE)) assertEquals(yellow.substring(9), YELLOW_TRUE.status);
         }
     }
 
+    @Step
     public void checkUnselect(Logs... logsForCheck) {
         String wind = logs.get(0).getText();
         String water = logs.get(1).getText();
 
         for (Logs l : logsForCheck) {
-            if (l.equals(WATER_FALSE)) assertEquals(water.substring(9), Logs.WATER_FALSE.status);
-            else if (l.equals(WIND_FALSE)) assertEquals(wind.substring(9), Logs.WIND_FALSE.status);
+            if (l.equals(WATER_FALSE)) assertEquals(water.substring(9), WATER_FALSE.status);
+            else if (l.equals(WIND_FALSE)) assertEquals(wind.substring(9), WIND_FALSE.status);
         }
     }
 }
