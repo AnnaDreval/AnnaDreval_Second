@@ -5,14 +5,14 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.ServicePage_HW4;
+import pageObjects.ServicePage;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.CheckBoxes.WATER;
-import static enums.CheckBoxes.WIND;
-import static enums.DropDown.YELLOW;
+import static enums.hw4.CheckBoxes.WATER;
+import static enums.hw4.CheckBoxes.WIND;
+import static enums.hw4.DropDown.YELLOW;
 import static enums.Logs.*;
-import static enums.RadioButtons.SELEN;
+import static enums.hw4.RadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
 
@@ -20,11 +20,11 @@ import static enums.Users.PITER_CHAILOVSKII;
 @Story("Interface Check")
 public class InterfaceCheckTest extends SelenideTestBase {
 
-    private ServicePage_HW4 servicepage;
+    private ServicePage servicepage;
 
     @BeforeClass
     public void beforeClass() {
-        servicepage = page(ServicePage_HW4.class);
+        servicepage = page(ServicePage.class);
     }
 
     @Test

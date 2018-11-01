@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 import pageObjects.hw6.ServicePage;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.CheckBoxes.WATER;
-import static enums.CheckBoxes.WIND;
-import static enums.DropDown.YELLOW;
+import static enums.hw4.CheckBoxes.WATER;
+import static enums.hw4.CheckBoxes.WIND;
+import static enums.hw4.DropDown.YELLOW;
 import static enums.Logs.*;
-import static enums.RadioButtons.SELEN;
+import static enums.hw4.RadioButtons.SELEN;
 import static enums.Users.PITER_CHAILOVSKII;
 
 public class InterfaceCheckTest extends SelenideTestBase {

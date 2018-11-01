@@ -3,39 +3,43 @@ package hw4;
 import base.SelenideTestBase;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.DatesPage_HW4;
+import pageObjects.DatesPage;
+import pageObjects.hw4.HomePage;
 
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHAILOVSKII;
 
 public class SlidersCheckTest extends SelenideTestBase {
 
-    private DatesPage_HW4 datesPage;
+    private HomePage homePage;
+    private pageObjects.hw4.DatesPage datesPage;
+
 
     @BeforeClass
     public void beforeClass() {
-        datesPage = page(DatesPage_HW4.class);
+        homePage = page(HomePage.class);
+        datesPage = page(pageObjects.hw4.DatesPage.class);
     }
 
     @Test
     public void slidersCheckTest() {
 
         //1 Open test site by URL
-        datesPage.openPage();
+        homePage.openPage();
 
         //2 Assert Browser title
-        datesPage.checkTitle();
+        homePage.checkTitle();
 
         //3 Perform login
-        datesPage.login(PITER_CHAILOVSKII);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
-        datesPage.checkUserName();
+        homePage.checkUserName();
 
         //5 Open Service -> Dates Page
         datesPage.datesPage();
 
-       //6 Setting Range sliders
+        //6 Setting Range sliders
         datesPage.setSliders(0, 100);
 
         //7 Assert sliders

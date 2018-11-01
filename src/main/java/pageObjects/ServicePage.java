@@ -2,6 +2,10 @@ package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.*;
+import enums.hw4.CheckBoxes;
+import enums.hw4.DropDown;
+import enums.Logs;
+import enums.hw4.RadioButtons;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,7 +18,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Logs.*;
 import static org.testng.Assert.assertEquals;
 
-public class ServicePage_HW4 {
+public class ServicePage {
 
     ServiceMenuCategories options = ServiceMenuCategories.OPTIONS;
 
@@ -164,7 +168,6 @@ public class ServicePage_HW4 {
         assertEquals(radiobuttons.size(), 4);
         defaultButton.shouldBe(visible);
         button.shouldBe(visible);
-        defaultButton.shouldBe(visible);
     }
 
     @Step
