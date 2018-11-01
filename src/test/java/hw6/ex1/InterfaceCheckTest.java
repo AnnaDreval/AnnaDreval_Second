@@ -3,81 +3,83 @@ package hw6.ex1;
 import base.SelenideTestBase;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.hw6.ServicePage;
+import pageObjects.hw6.DifferentElements;
+import pageObjects.hw6.HomePage;
 
 import static com.codeborne.selenide.Selenide.page;
+import static enums.Users.PITER_CHAILOVSKII;
 import static enums.hw4.CheckBoxes.WATER;
 import static enums.hw4.CheckBoxes.WIND;
 import static enums.hw4.DropDown.YELLOW;
-import static enums.Logs.*;
 import static enums.hw4.RadioButtons.SELEN;
-import static enums.Users.PITER_CHAILOVSKII;
 
 public class InterfaceCheckTest extends SelenideTestBase {
 
-    private ServicePage servicepage;
+    private HomePage homePage;
+    private DifferentElements differentElements;
 
     @BeforeClass
     public void beforeClass() {
-        servicepage = page(ServicePage.class);
+        homePage = page(HomePage.class);
+        differentElements = page(DifferentElements.class);
     }
 
     @Test
     public void interfaceCheckTest() {
 
         //1 Open test site by URL
-        servicepage.openPage();
+        homePage.openPage();
 
         //2 Assert Browser title
-        servicepage.checkTitle();
+        homePage.checkTitle();
 
         //3 Perform login
-        servicepage.login(PITER_CHAILOVSKII);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
-        servicepage.checkUserName();
+        homePage.checkUserName();
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
-        servicepage.checkServiceSubcategory();
+        homePage.checkServiceSubcategory();
 
         //6 Click on Service subcategory in the left section and check that drop down contains options
-        servicepage.checkServiceLeftSection();
+        homePage.checkServiceLeftSection();
 
         //7 Open Service -> Different Elements
-        servicepage.openDiffElem();
+        differentElements.openDiffElem();
 
         //8 Check Different elements interface
-        servicepage.checkDiffElemInterface();
+        differentElements.checkDiffElemInterface();
 
         //9 Assert Right Section
-        servicepage.checkRightSection();
+        differentElements.checkRightSection();
 
         //10 Assert Left Section
-        servicepage.checkLeftSection();
+        differentElements.checkLeftSection();
 
         //11 Select checkboxes
-        servicepage.selectCheckbox(WATER, WIND);
+        differentElements.selectCheckbox(WATER, WIND);
 
         //12 Assert info-panel section
-        servicepage.checkCheckboxInfo(WATER_TRUE, WIND_TRUE);
+        differentElements.checkCheckboxInfo(WIND, WATER);
 
         //13 Select radio
-        servicepage.selectRadio(SELEN);
+        differentElements.selectRadio(SELEN);
 
         //14 Assert info-panel section
-        servicepage.checkRadioInfo(SELEN_TRUE);
+        differentElements.checkRadioInfo(SELEN);
 
         //15  Select in dropdown
-        servicepage.selectDropDown(YELLOW);
+        differentElements.selectDropDown(YELLOW);
 
         //16 Assert info-panel section
-        servicepage.checkDropDown(YELLOW_TRUE);
+        differentElements.checkDropDown(YELLOW);
 
         //17 Unselect checkboxes
-        servicepage.selectCheckbox(WATER, WIND);
+        differentElements.selectCheckbox(WATER, WIND);
 
         //18 Assert info-panel section
-        servicepage.checkUnselect(WATER_FALSE, WIND_FALSE);
+        differentElements.checkUnselect(WIND, WATER);
 
     }
 }
