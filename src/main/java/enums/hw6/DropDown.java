@@ -1,4 +1,4 @@
-package enums.hw4;
+package enums.hw6;
 
 public enum DropDown {
 

@@ -1,11 +1,13 @@
 package pageObjects.hw6;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.ServiceMenuCategories;
 import enums.Users;
+import enums.hw4.DiffElemEnum;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,6 +50,8 @@ public class HomePage {
     @FindBy(css = ".sub > li > a p")
     private List<SelenideElement> serviceLeftOptions;
 
+    @FindBy(css = "[href = 'different-elements.html']")
+    private SelenideElement diffElements;
 
     //===========================methods================================
 
@@ -66,6 +70,14 @@ public class HomePage {
         submit.click();
     }
 
+    @Step
+    @Given("I'm on the Different Elements page")
+    public void openDiffElem() {
+        serviceHeader.click();
+        diffElements.click();
+        assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), DiffElemEnum.URL_DIFFERENT_ELEMENTS_PAGE.text);
+    }
+
     //================================checks===================================
 
     @Step
@@ -76,8 +88,8 @@ public class HomePage {
 
     @Step
     @Then("The user icon is displayed on the header")
-    public void checkUserName() {
-        userName.shouldHave(text("PITER CHAILOVSKII"));
+    public void checkUserName(Users user) {
+        userName.shouldHave(text(user.name));
     }
 
     @Step

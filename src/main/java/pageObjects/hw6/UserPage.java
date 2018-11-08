@@ -1,6 +1,7 @@
 package pageObjects.hw6;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
+import static enums.hw6.Logs.URL_USER_TABLE_PAGE;
 import static enums.hw6.Logs.VIP;
 import static org.testng.Assert.assertEquals;
 
@@ -100,6 +102,7 @@ public class UserPage {
     @Then("\"User Table\" page is opened")
     public void clickUserTableButton() {
         userPageButton.click();
+        assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), URL_USER_TABLE_PAGE.status);
     }
 
     @Step

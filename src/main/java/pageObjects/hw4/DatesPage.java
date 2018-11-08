@@ -1,65 +1,63 @@
 package pageObjects.hw4;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.actions;
-import static enums.SlidersLog.*;
 import static org.testng.Assert.assertEquals;
 
 public class DatesPage {
 
-    private int sliderLeft;
-    private int sliderRight;
-
-    @FindBy(css = "[class = 'dropdown-toggle']")
-    private SelenideElement serviceHeader;
-
-    @FindBy(css = "[href = 'dates.html']")
-    private SelenideElement datesPage;
-
     @FindBy(css = "a.ui-slider-handle.ui-state-default.ui-corner-all")
     private List<SelenideElement> sliders;
+
+    @FindBy(css = ".ui-slider")
+    private SelenideElement sliderLine;
 
     @FindBy(css = ".panel-body-list > li")
     private List<SelenideElement> logs;
 
     //===========================methods================================
 
-    public void datesPage() {
-        serviceHeader.click();
-        datesPage.click();
-    }
-
+    @Step
     public void setSliders(int left, int right) {
 
-        actions().dragAndDropBy(sliders.get(0), -1000, 0).build().perform();
-        actions().dragAndDropBy(sliders.get(1), 1000, 0).build().perform();
+        double step = sliderLine.getSize().width / 100.0;
 
-        double panelStep = (double) (sliders.get(1).getLocation().getX() - sliders.get(0).getLocation().getX()) / 100;
+        double leftInit = Double.parseDouble(sliders.get(0).text());
+        double rigthInit = Double.parseDouble(sliders.get(1).text());
 
-        actions().dragAndDropBy(sliders.get(0), (int) (left * panelStep - ((left > 0) ? 0.5 * panelStep : panelStep)), 0).build()
-                .perform();
-        actions().dragAndDropBy(sliders.get(1), (int) (-((100 - right) * panelStep + panelStep)), 0).build().perform();
+        double factorLeft = (leftInit >= left ? 1 : 0);
+        double factorRight = (rigthInit >= right ? 1 : 0);
 
-        sliderLeft = Integer.parseInt(sliders.get(0).getText());
-        sliderRight = Integer.parseInt(sliders.get(1).getText());
+        double leftX = (left - leftInit - factorLeft) * step;
+        double rightX = (right - rigthInit - factorRight) * step;
+
+        actions().dragAndDropBy(sliders.get(0), (int) leftX, 0).perform();
+        actions().dragAndDropBy(sliders.get(1), (int) rightX, 0).perform();
+
     }
 
     //================================checks===================================
 
-    public void checkSliders() {
+    @Step
+    public void checkSliders(int left, int rigth) {
 
-        assertEquals(Integer.parseInt(sliders.get(0).getText()), sliderLeft);
-        assertEquals(Integer.parseInt(sliders.get(1).getText()), sliderRight);
+        assertEquals(Integer.parseInt(sliders.get(0).getText()), left);
+        assertEquals(Integer.parseInt(sliders.get(1).getText()), rigth);
 
-        String from = logs.get(1).getText().substring(9);
-        String to = logs.get(0).getText().substring(9);
+        String log0 = logs.get(0).getText().replaceAll("[\\s\\D]", "").substring(7);
+        String log1 = logs.get(1).getText().replaceAll("[\\s\\D]", "").substring(7);
 
-        assertEquals(from, FROM_SLIDER.status + sliderLeft + END.status);
-        assertEquals(to, TO_SLIDER.status + sliderRight + END.status);
+        if (Integer.parseInt(log0) < Integer.parseInt(log1)) {
+            assertEquals(log0, Integer.toString(left));
+            assertEquals(log1, Integer.toString(rigth));
+        } else if (Integer.parseInt(log0) > Integer.parseInt(log1)) {
+            assertEquals(log1, Integer.toString(left));
+            assertEquals(log0, Integer.toString(rigth));
+        }
     }
-
 }

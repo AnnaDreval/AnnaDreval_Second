@@ -1,4 +1,4 @@
-package enums;
+package enums.hw4;
 
 public enum SlidersLog {
 

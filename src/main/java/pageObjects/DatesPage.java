@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.SlidersLog.*;
+import static enums.hw4.SlidersLog.*;
 import static org.testng.Assert.assertEquals;
 
 public class DatesPage {

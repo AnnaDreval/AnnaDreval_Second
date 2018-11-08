@@ -12,10 +12,8 @@ Feature: Service Page tests
     And There is a Right Section
     And There is Left Section
     When I select checkboxes
-    Then There are checkbox logs on the info-panel section
-    When I select radiobutton
-    Then There is radiobutton log on the info-panel section
-    When I select dropdown item
-    Then There is dropdown log on the info-panel section
-    When I select checkboxes
-    Then There are checkbox logs about unselect
+    And I select radiobutton
+    And I select dropdown item
+    Then There are logs about all actions
+    When I unselect checkboxes
+    Then There are logs about all actions

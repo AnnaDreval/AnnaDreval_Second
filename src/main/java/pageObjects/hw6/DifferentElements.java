@@ -1,37 +1,29 @@
 package pageObjects.hw6;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import enums.hw4.CheckBoxes;
-import enums.hw4.DropDown;
-import enums.hw4.RadioButtons;
+import enums.hw4.DiffElemEnum;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.visible;
+import static enums.hw4.DiffElemEnum.*;
 import static org.testng.Assert.assertEquals;
 
 public class DifferentElements {
 
-    private String checkBoxLog = ": condition changed to ";
-    private String radiobuttonLog = "metal: value changed to ";
-    private String dropdownLog = "Colors: value changed to ";
+    private SelenideElement checkboxName;
+    private SelenideElement radioName;
 
-
-    @FindBy(css = "[class = 'dropdown-toggle']")
-    private SelenideElement serviceHeader;
-
-    @FindBy(css = "[href = 'different-elements.html']")
-    private SelenideElement diffElements;
-
-    @FindBy(css = ".label-checkbox > input")
+    @FindBy(css = ".label-checkbox")
     private List<SelenideElement> checkboxes;
 
-    @FindBy(css = ".label-radio > input")
+
+    @FindBy(css = ".label-radio")
     private List<SelenideElement> radiobuttons;
 
     @FindBy(css = "[value = 'Default Button']")
@@ -49,8 +41,8 @@ public class DifferentElements {
     @FindBy(css = ".colors")
     private SelenideElement dropdownform;
 
-    @FindBy(css = ".uui-form-element > option")
-    private List<SelenideElement> dropdownOptions;
+    @FindBy(css = "select.uui-form-element")
+    private SelenideElement dropdown;
 
     @FindBy(css = ".panel-body-list > li")
     private List<SelenideElement> logs;
@@ -58,34 +50,66 @@ public class DifferentElements {
     //===========================methods================================
 
     @Step
-    @Given("I'm on the Different Elements page")
-    public void openDiffElem() {
-        serviceHeader.click();
-        diffElements.click();
+    @When("I select checkboxes")
+    public void selectCheckbox(DiffElemEnum... diffElemEnums) {
+        for (DiffElemEnum element : diffElemEnums) {
+            getCheckboxName(element).click();
+        }
+
+        for (DiffElemEnum element : diffElemEnums) {
+            getCheckboxName(element).find(INPUT.text).should(Condition.checked);
+        }
     }
 
     @Step
-    @When("I select checkboxes")
-    public void selectCheckbox(CheckBoxes... checkBoxes) {
-        for (CheckBoxes c : checkBoxes) {
-            checkboxes.get(c.num).click();
-        }
+    public SelenideElement getCheckboxName(DiffElemEnum element) {
+        checkboxes.forEach(checkbox -> {
+            if (checkbox.text().equalsIgnoreCase(element.text)) {
+                checkboxName = checkbox;
+            }
+        });
+        return checkboxName;
     }
 
     @Step
     @When("I select radiobutton")
-    public void selectRadio(RadioButtons... radioButtons) {
-        for (RadioButtons rb : radioButtons) {
-            radiobuttons.get(rb.num).click();
+    public void selectRadio(DiffElemEnum... diffElemEnums) {
+        for (DiffElemEnum element : diffElemEnums) {
+            getRadioName(element).click();
+        }
+
+        for (DiffElemEnum element : diffElemEnums) {
+            radioName.find(INPUT.text).should(Condition.checked);
         }
     }
 
     @Step
+    public SelenideElement getRadioName(DiffElemEnum element) {
+        radiobuttons.forEach(radio -> {
+            if (radio.text().equalsIgnoreCase(element.text)) {
+                radioName = radio;
+            }
+        });
+        return radioName;
+    }
+
+    @Step
     @When("I select dropdown item")
-    public void selectDropDown(DropDown... dropDowns) {
-        dropdownform.click();
-        for (DropDown dd : dropDowns) {
-            dropdownOptions.get(dd.num).click();
+    public void selectDropDown(DiffElemEnum diffElemEnums) {
+        dropdown.click();
+        dropdown.selectOption(diffElemEnums.text);
+        dropdown.should(Condition.text(diffElemEnums.text));
+    }
+
+    @Step
+    @When("I unselect checkboxes")
+    public void unSelectCheckbox(DiffElemEnum... diffElemEnums) {
+        for (DiffElemEnum element : diffElemEnums) {
+            getCheckboxName(element).click();
+        }
+
+        for (DiffElemEnum element : diffElemEnums) {
+            getCheckboxName(element).find(INPUT.text).shouldNot(Condition.checked);
         }
     }
 
@@ -113,34 +137,29 @@ public class DifferentElements {
     }
 
     @Step
-    @Then("There are checkbox logs on the info-panel section")
-    public void checkCheckboxInfo(CheckBoxes... checkBoxes) {
-        int i = 0;
-        for (CheckBoxes cb : checkBoxes) {
-            assertEquals(logs.get(i).getText().substring(9), cb.title + checkBoxLog + true);
-            ++i;
-        }
-    }
+    @Then("There are logs about all actions")
+    public void checkLogs(int start, int finish, boolean isChecked, DiffElemEnum... elements) {
 
-    @Step
-    @Then("There is radiobutton log on the info-panel section")
-    public void checkRadioInfo(RadioButtons radio) {
-        assertEquals(logs.get(0).getText().substring(9), radiobuttonLog + radio.title);
-    }
+        StringBuffer actualElement = new StringBuffer();
 
-    @Step
-    @Then("There is dropdown log on the info-panel section")
-    public void checkDropDown(DropDown dropDown) {
-        assertEquals(logs.get(0).getText().substring(9), dropdownLog + dropDown.title);
-    }
+        for (DiffElemEnum element : elements) {
+            actualElement.setLength(0);
 
-    @Step
-    @Then("There are checkbox logs about unselect")
-    public void checkUnselect(CheckBoxes... checkBoxes) {
-        int i = 0;
-        for (CheckBoxes cb : checkBoxes) {
-            assertEquals(logs.get(i).getText().substring(9), cb.title + checkBoxLog + false);
-            ++i;
+            for (int i = start; i < finish; i++) {
+
+                String log = logs.get(i).getText().replaceAll("[\\d\\s\\W]", "").toLowerCase();
+
+                if (log.startsWith(element.text.toLowerCase()) && log.endsWith(String.valueOf(isChecked))) {
+                    actualElement.append(element.text);
+                    break;
+
+                } else if ((log.startsWith(METALL.text.toLowerCase()) | log.startsWith(COLOR.text.toLowerCase()))
+                        && log.endsWith(element.text.toLowerCase())) {
+                    actualElement.append(element.text);
+                    break;
+                }
+            }
+            assertEquals(element.text, actualElement.toString());
         }
     }
 
