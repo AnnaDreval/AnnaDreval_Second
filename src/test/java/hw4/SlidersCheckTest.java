@@ -49,7 +49,7 @@ public class SlidersCheckTest extends SelenideTestBase {
         datesPage.setSliders(0, 0);
 
         //9 Assert sliders
-        datesPage.checkSliders(0,0);
+        datesPage.checkSliders(0, 0);
 
         //10 Setting Range sliders
         datesPage.setSliders(100, 100);
@@ -62,6 +62,5 @@ public class SlidersCheckTest extends SelenideTestBase {
 
         //13 Assert sliders
         datesPage.checkSliders(30, 70);
-
     }
 }

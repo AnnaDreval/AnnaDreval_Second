@@ -103,8 +103,8 @@ public class DatesPage {
         String from = logs.get(1).getText().substring(9);
         String to = logs.get(0).getText().substring(9);
 
-        assertEquals(from, FROM_SLIDER.status + sliderLeft + END.status);
-        assertEquals(to, TO_SLIDER.status + sliderRight + END.status);
+        assertEquals(from, FROM.status + sliderLeft + END.status);
+        assertEquals(to, TO.status + sliderRight + END.status);
 
     }
 }

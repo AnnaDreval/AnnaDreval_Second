@@ -2,8 +2,8 @@ package enums.hw4;
 
 public enum SlidersLog {
 
-    FROM_SLIDER("Range 2(From):"),
-    TO_SLIDER("Range 2(To):"),
+    FROM("From"),
+    TO("To"),
     END(" link clicked");
 
     public String status;
