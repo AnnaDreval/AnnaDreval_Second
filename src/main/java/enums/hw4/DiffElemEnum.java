@@ -5,6 +5,7 @@ public enum DiffElemEnum {
     OPTION("Option"),
     WATER("Water"),
     WIND("Wind"),
+    FIRE("Fire"),
     SELEN("Selen"),
     YELLOW("Yellow"),
     METALL("metal"),
