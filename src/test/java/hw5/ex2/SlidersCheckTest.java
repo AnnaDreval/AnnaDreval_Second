@@ -38,7 +38,7 @@ public class SlidersCheckTest extends SelenideTestBase {
         homePage.checkTitle();
 
         //3 Perform login
-        //homePage.login(PITER_CHAILOVSKII);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
         homePage.checkUserName(PITER_CHAILOVSKII);
