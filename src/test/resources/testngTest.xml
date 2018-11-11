@@ -1,13 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Test Suite007" verbose="1" >
-    <test name="Homework4 Test"   >
 
+    <test name="Homework4 Test" parallel="methods" thread-count="3" >
 
-        <classes>
-            <class name="hw4.InterfaceCheckTest" />
-        </classes>
-
+        <packages>
+            <package name="hw5.ex2" />
+        </packages>
 
     </test>
 </suite>

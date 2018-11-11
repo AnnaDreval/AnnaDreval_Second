@@ -3,19 +3,10 @@
 <suite name="Test Suite" verbose="1" >
     <test name="Simple Test"   >
 
-        <groups>
-            <run>
-                <include name="Group1" />
-            </run>
-        </groups>
-
         <classes>
-            <class name="lesson2.SimpleTest" />
+            <class name="hw5.ex1.InterfaceCheckTest" />
+            <class name="hw5.ex1.SlidersCheckTest" />
         </classes>
-
-        <!--<packages>-->
-            <!--<package name=""-->
-        <!--</packages>-->
 
     </test>
 </suite>

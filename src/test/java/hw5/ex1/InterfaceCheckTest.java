@@ -1,4 +1,4 @@
-package hw5;
+package hw5.ex1;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
@@ -12,9 +12,10 @@ import pageObjects.hw4.HomePage;
 
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHAILOVSKII;
+import static enums.hw4.DiffElemEnum.*;
 
-@Feature("Different Elements")
-@Story("Interface Check tests")
+@Feature("Smoke tests")
+@Story("Different elements Interface Check tests")
 @Listeners(AllureAttachmentListener.class)
 public class InterfaceCheckTest extends SelenideTestBase {
 
@@ -40,7 +41,7 @@ public class InterfaceCheckTest extends SelenideTestBase {
         homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
-     //   homePage.checkUserName();
+        homePage.checkUserName(PITER_CHAILOVSKII);
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
         homePage.checkServiceSubcategory();
@@ -61,28 +62,22 @@ public class InterfaceCheckTest extends SelenideTestBase {
         differentElements.checkLeftSection();
 
         //11 Select checkboxes
-      //  differentElements.selectCheckbox(WATER, WIND);
-
-        //12 Assert info-panel section
-      //  differentElements.checkCheckboxInfo(WIND, WATER);
+        differentElements.selectCheckbox(WATER, WIND);
 
         //13 Select radio
-     //   differentElements.selectRadio(SELEN);
-
-        //14 Assert info-panel section
-     //   differentElements.checkRadioInfo(SELEN);
+        differentElements.selectRadio(SELEN);
 
         //15  Select in dropdown
-  //     differentElements.selectDropDown(YELLOW);
+        differentElements.selectDropDown(YELLOW);
 
         //16 Assert info-panel section
-    //    differentElements.checkDropDown(YELLOW);
+        differentElements.checkLogs(0, 4, true, WATER, WIND, YELLOW, SELEN);
 
         //17 Unselect checkboxes
-       // differentElements.selectCheckbox(WATER, WIND);
+        differentElements.unSelectCheckbox(WATER, WIND);
 
         //18 Assert info-panel section
-      // differentElements.checkUnselect(WIND, WATER);
+        differentElements.checkLogs(4, 6, true, WATER, WIND);
     }
 }
 
