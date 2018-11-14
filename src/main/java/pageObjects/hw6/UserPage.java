@@ -76,34 +76,7 @@ public class UserPage {
 
     //===========================methods================================
 
-    @Step
-    @Given("I am on Home Page")
-    public void openPage() {
-        open("https://epam.github.io/JDI/index.html");
-    }
 
-    @Step
-    @Given("I login as user \"Piter Chailovskii\"")
-    public void login(Users user) {
-        profileButton.click();
-        login.sendKeys(user.login);
-        password.sendKeys(user.password);
-        submit.click();
-    }
-
-    @Step
-    @When("I click on \"Service\" button in Header")
-    public void clickServiceButton() {
-        serviceHeader.click();
-    }
-
-    @Step
-    @When("I click on \"User Table\" button in Service dropdown")
-    @Then("\"User Table\" page is opened")
-    public void clickUserTableButton() {
-        userPageButton.click();
-        assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), URL_USER_TABLE_PAGE.status);
-    }
 
     @Step
     @When("I select 'vip' checkbox for \"Sergey Ivan\"")
@@ -173,14 +146,14 @@ public class UserPage {
         checkDescription();
     }
 
-    public void checkPlayers() {
+    private void checkPlayers() {
         assertEquals(userNames.size(), 6);
         for (int i = 0; i < userNames.size(); i++) {
             assertEquals(userNames.get(i).getText(), players.title(i));
         }
     }
 
-    public void checkDescription() {
+    private void checkDescription() {
         assertEquals(descriptions.size(), 6);
         for (int i = 0; i < descriptions.size(); i++) {
             assertEquals(descriptions.get(i).getText(), description.title(i));

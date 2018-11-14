@@ -15,7 +15,7 @@ import static enums.Users.PITER_CHAILOVSKII;
 import static enums.hw4.DiffElemEnum.*;
 
 @Feature("Smoke tests")
-@Story("Different elements Interface Check tests")
+@Story("Different elements Interface сheck tests")
 @Listeners(AllureAttachmentListener.class)
 public class InterfaceCheckTest extends SelenideTestBase {
 

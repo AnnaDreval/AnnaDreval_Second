@@ -1,4 +1,4 @@
-package runners;
+package runners.hw6;
 
 import com.codeborne.selenide.Configuration;
 import cucumber.api.CucumberOptions;
@@ -6,7 +6,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.BeforeSuite;
 
 
-@CucumberOptions(features = "src/test/java/lesson6", glue = "pageObjects")
+@CucumberOptions(features = "src/test/java/hw6/ex1", glue = "pageObjects/hw6")
 public class CucumberTestingRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite

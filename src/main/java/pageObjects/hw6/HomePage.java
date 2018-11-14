@@ -6,34 +6,40 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.ServiceMenuCategories;
-import enums.Users;
 import enums.hw4.DiffElemEnum;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
 public class HomePage {
 
+    public HomePage() {
+        page(this);
+    }
+
     ServiceMenuCategories options = ServiceMenuCategories.OPTIONS;
 
     @FindBy(css = ".profile-photo")
-    private WebElement profileButton;
+    private SelenideElement profileButton;
 
     @FindBy(css = "[id = 'Name']")
-    private WebElement login;
+    private SelenideElement login;
 
     @FindBy(css = "[id = 'Password']")
-    private WebElement password;
+    private SelenideElement password;
 
     @FindBy(css = ".login [type = 'submit']")
-    private WebElement submit;
+    private SelenideElement submit;
+
+    @FindBy(css = "h3.main-title")
+    private SelenideElement mainTitle;
 
     @FindBy(css = "[ui = 'label']")
     private SelenideElement userName;
@@ -53,20 +59,23 @@ public class HomePage {
     @FindBy(css = "[href = 'different-elements.html']")
     private SelenideElement diffElements;
 
-    //===========================methods================================
+    @FindBy(css = "[href = 'dates.html']")
+    private SelenideElement datesPage;
+
+    //================================methods===================================
 
     @Step
-    @Given("I'm on the Home Page")
+    @When("I'm on the Home Page")
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
 
     @Step
-    @When("I login as user (.+)  with password (.+) ")
-    public void login(Users user) {
+    @When("I login as user (.+) with password (.+)")
+    public void login(String name, String passwd) {
         profileButton.click();
-        login.sendKeys(user.login);
-        password.sendKeys(user.password);
+        login.sendKeys(name);
+        password.sendKeys(passwd);
         submit.click();
     }
 
@@ -87,9 +96,9 @@ public class HomePage {
     }
 
     @Step
-    @Then("The user icon is displayed on the header")
-    public void checkUserName(Users user) {
-        userName.shouldHave(text(user.name));
+    @Then("The user name (.+) is displayed")
+    public void checkUserName(String name) {
+        userName.shouldHave(text(name));
     }
 
     @Step
@@ -109,4 +118,5 @@ public class HomePage {
             serviceLeftOptions.get(i).shouldHave(text(options.title(i)));
         }
     }
+
 }

@@ -11,10 +11,15 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.page;
 import static enums.hw4.DiffElemEnum.*;
 import static org.testng.Assert.assertEquals;
 
 public class DifferentElements {
+
+    public DifferentElements() {
+        page(this);
+    }
 
     private SelenideElement checkboxName;
     private SelenideElement radioName;
@@ -50,19 +55,19 @@ public class DifferentElements {
     //===========================methods================================
 
     @Step
-    @When("I select checkboxes")
-    public void selectCheckbox(DiffElemEnum... diffElemEnums) {
-        for (DiffElemEnum element : diffElemEnums) {
-            getCheckboxName(element).click();
+    @When("I select (.+)")
+    public void selectCheckbox( String elements) {
+      //  for (String elem: elements)
+        {
+            for (SelenideElement selElem: checkboxes) {
+                if (selElem.parent().getText().equals(elements)) selElem.setSelected(true);
+            }
         }
 
-        for (DiffElemEnum element : diffElemEnums) {
-            getCheckboxName(element).find(INPUT.text).should(Condition.checked);
-        }
     }
 
     @Step
-    public SelenideElement getCheckboxName(DiffElemEnum element) {
+    private SelenideElement getCheckboxName(DiffElemEnum element) {
         checkboxes.forEach(checkbox -> {
             if (checkbox.text().equalsIgnoreCase(element.text)) {
                 checkboxName = checkbox;
@@ -84,7 +89,7 @@ public class DifferentElements {
     }
 
     @Step
-    public SelenideElement getRadioName(DiffElemEnum element) {
+    private SelenideElement getRadioName(DiffElemEnum element) {
         radiobuttons.forEach(radio -> {
             if (radio.text().equalsIgnoreCase(element.text)) {
                 radioName = radio;
