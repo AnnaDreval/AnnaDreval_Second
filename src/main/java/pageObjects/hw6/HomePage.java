@@ -151,4 +151,5 @@ public class HomePage {
             serviceLeftOptions.get(i).shouldHave(text(options.title(i)));
         }
     }
+
 }

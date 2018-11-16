@@ -71,10 +71,8 @@ public class DifferentElements {
         for (DiffElemEnum element : diffElemEnums) {
             getRadioName(element).click();
         }
+        radioName.find(INPUT.text).should(Condition.checked);
 
-        for (DiffElemEnum element : diffElemEnums) {
-            radioName.find(INPUT.text).should(Condition.checked);
-        }
     }
 
     private SelenideElement getRadioName(DiffElemEnum element) {

@@ -23,6 +23,7 @@ public class DifferentElements {
         page(this);
     }
 
+
     @FindBy(css = ".label-checkbox")
     private ElementsCollection checkboxes;
 

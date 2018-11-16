@@ -5,7 +5,6 @@ import hw8.entities.Users;
 import org.testng.annotations.Test;
 
 import static hw8.sites.JdiSite.homePage;
-import static hw8.sites.JdiSite.metalsColoursPage;
 
 public class MetalsColoursDataSet extends TestBase{
 

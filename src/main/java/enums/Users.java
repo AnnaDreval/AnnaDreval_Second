@@ -8,7 +8,7 @@ public enum Users {
     public String password;
     public String name;
 
-    Users(String login, String password, String name) {
+    Users(String name, String login, String password) {
         this.login = login;
         this.password = password;
         this.name = name;

@@ -4,7 +4,7 @@
     <test name="Interface Check test"   >
 
         <classes>
-            <class name="runners.hw6.ServicePageRunner"/>
+            <class name="runners.CucumberTestingRunner_HW6"/>
         </classes>
 
     </test>

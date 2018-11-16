@@ -1,10 +1,11 @@
 package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
-import enums.*;
+import enums.Logs;
+import enums.ServiceMenuCategories;
+import enums.Users;
 import enums.hw6.CheckBoxes;
 import enums.hw6.DropDown;
-import enums.Logs;
 import enums.hw6.RadioButtons;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;

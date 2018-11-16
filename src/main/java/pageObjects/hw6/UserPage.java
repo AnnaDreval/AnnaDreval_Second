@@ -131,4 +131,5 @@ public class UserPage {
         descriptions.shouldHave(texts(userTable.column(2).subList(1, userTable.height())));
 
     }
+
 }

@@ -1,4 +1,4 @@
-package runners.hw6;
+package runners;
 
 import com.codeborne.selenide.Configuration;
 import cucumber.api.CucumberOptions;
