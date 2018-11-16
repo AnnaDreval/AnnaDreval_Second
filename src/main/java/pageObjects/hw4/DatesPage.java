@@ -55,10 +55,12 @@ public class DatesPage {
 
     @Step
     public void checkSliders(int left, int rigth) {
-
         assertEquals(Integer.parseInt(sliders.get(0).getText()), left);
         assertEquals(Integer.parseInt(sliders.get(1).getText()), rigth);
+    }
 
+    @Step
+    public void checkLogs(int left, int rigth) {
         for (int i = 0; i < 2; i++) {
             if (logs.get(i).has(text(TO.status))) {
                 logs.get(i).shouldHave(text(Integer.toString(rigth)));

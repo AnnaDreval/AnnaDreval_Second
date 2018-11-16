@@ -1,24 +1,31 @@
-package hw6.ex1;
+package hw5;
 
 import base.SelenideTestBase;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pageObjects.hw6.DifferentElements;
-import pageObjects.hw6.HomePage;
+import pageObjects.hw4.DifferentElements;
+import pageObjects.hw4.HomePage;
 
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHAILOVSKII;
 import static enums.hw4.DiffElemEnum.*;
 
-public class InterfaceCheckTest extends SelenideTestBase {
+@Feature("Smoke tests")
+@Story("Different elements Interface Check tests")
+@Listeners(AllureAttachmentListener.class)
+public class InterfaceCheckTest_Failed extends SelenideTestBase {
 
-    private HomePage homePage;
     private DifferentElements differentElements;
+    private HomePage homePage;
 
     @BeforeClass
     public void beforeClass() {
-        homePage = page(HomePage.class);
         differentElements = page(DifferentElements.class);
+        homePage = page(HomePage.class);
     }
 
     @Test
@@ -64,14 +71,13 @@ public class InterfaceCheckTest extends SelenideTestBase {
         differentElements.selectDropDown(YELLOW);
 
         //16 Assert info-panel section
-        differentElements.checkLogs(0, 4, true, WATER, WIND, YELLOW, SELEN);
+        differentElements.checkLogs(0, 4, true, FIRE, WIND, YELLOW, SELEN);
 
         //17 Unselect checkboxes
         differentElements.unSelectCheckbox(WATER, WIND);
 
         //18 Assert info-panel section
         differentElements.checkLogs(4, 6, true, WATER, WIND);
-
     }
 }
 

@@ -4,7 +4,7 @@
     <test name="Homework 5" parallel="methods" thread-count="3" >
 
         <packages>
-            <package name="hw5.ex2" />
+            <package name="hw5" />
         </packages>
 
     </test>

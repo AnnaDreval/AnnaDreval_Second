@@ -1,4 +1,4 @@
-package hw5.ex1;
+package hw5;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
@@ -38,7 +38,7 @@ public class SlidersCheckTest extends SelenideTestBase {
         homePage.checkTitle();
 
         //3 Perform login
-        //homePage.login(PITER_CHAILOVSKII);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name
         homePage.checkUserName(PITER_CHAILOVSKII);
@@ -51,23 +51,27 @@ public class SlidersCheckTest extends SelenideTestBase {
 
         //7 Assert sliders
         datesPage.checkSliders(0, 100);
+        datesPage.checkLogs(0, 100);
 
         //8 Setting Range sliders
         datesPage.setSliders(0, 0);
 
         //9 Assert sliders
         datesPage.checkSliders(0, 0);
+        datesPage.checkLogs(0, 0);
 
         //10 Setting Range sliders
         datesPage.setSliders(100, 100);
 
         //11 Assert sliders
         datesPage.checkSliders(100, 100);
+        datesPage.checkLogs(100, 100);
 
         //12 Setting Range sliders
         datesPage.setSliders(30, 70);
 
         //13 Assert sliders
         datesPage.checkSliders(30, 70);
+        datesPage.checkLogs(30, 70);
     }
 }

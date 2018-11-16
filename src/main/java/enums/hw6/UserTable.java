@@ -22,4 +22,5 @@ public enum UserTable {
     };
 
     public abstract String title(int i);
+
 }

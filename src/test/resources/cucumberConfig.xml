@@ -4,7 +4,7 @@
     <test name="Cucumber Test"   >
 
         <classes>
-            <class name="runners.CucumberTestingRunner" />
+            <class name="runners.hw6.CucumberTestingRunner_HW6" />
         </classes>
 
     </test>

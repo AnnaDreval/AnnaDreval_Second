@@ -8,7 +8,11 @@ public enum Roles {
         public String title(int i) {
             return arr[i];
         }
+        public String[] titles() {
+            return arr;
+        }
     };
 
+    public abstract String[] titles();
     public abstract String title(int i);
 }

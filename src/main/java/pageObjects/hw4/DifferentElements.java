@@ -57,7 +57,6 @@ public class DifferentElements {
         }
     }
 
-    @Step
     private SelenideElement getCheckboxName(DiffElemEnum element) {
         checkboxes.forEach(checkbox -> {
             if (checkbox.text().equalsIgnoreCase(element.text)) {
@@ -78,7 +77,6 @@ public class DifferentElements {
         }
     }
 
-    @Step
     private SelenideElement getRadioName(DiffElemEnum element) {
         radiobuttons.forEach(radio -> {
             if (radio.text().equalsIgnoreCase(element.text)) {
